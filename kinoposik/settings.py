@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'kinopoisk_app.apps.KinopoiskAppConfig',
+    'django_extensions',
     'rest_framework',
 ]
 

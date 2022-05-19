@@ -10,7 +10,7 @@ class Actor(models.Model):
                                 blank=True)
 
     def __str__(self):
-        return self.first_name, self.second_name
+        return f'{self.first_name} {self.second_name}'
 
     class Meta:
         verbose_name = "Актер"
