@@ -1,7 +1,7 @@
 from rest_framework import serializers
 
-from .models.FilmDirectorModel import FilmDirector
-from .models.ActorModel import Actor
+from kinopoisk_app.models.FilmDirectorModel import FilmDirector
+from kinopoisk_app.models.ActorModel import Actor
 
 
 class ActorSerializer(serializers.ModelSerializer):
