@@ -1,7 +1,9 @@
 from django.db import models
+import uuid
 
 
 class Movie(models.Model):
+    movie_id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True, primary_key=True)
     name = models.CharField(max_length=100)
     # Todo: переделать жанры одинаково
     genre = models.CharField(max_length=50)

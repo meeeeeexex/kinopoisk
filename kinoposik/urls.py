@@ -17,7 +17,9 @@ from django.contrib import admin
 from django.urls import path
 
 from kinopoisk_app.views.ActorAndDirectorViews import *
+from kinopoisk_app.views.MovieAndCinemaViews import CinemaAPIRetrieve, CinemaAPIList
 from kinopoisk_app.views.UserAndReviewViews import *
+from kinopoisk_app.views.MovieAndCinemaViews import MovieAPIList, MovieAPIRetrieve
 
 urlpatterns = [
     path('admin/', admin.site.urls),
