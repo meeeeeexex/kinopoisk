@@ -24,4 +24,8 @@ urlpatterns = [
     path('api/actor/<int:pk>/', ActorAPIRetrieve.as_view()),
     path('api/filmdirector/<int:pk>/', FilmDirectorAPIRetrieve.as_view()),
     path('api/filmdirectors/', FilmDirectorAPIList.as_view()),
+    path('api/movies/', MovieAPIList.as_view()),
+    path('api/movie/<int:pk>/', MovieAPIRetrieve.as_view()),
+    path('api/cinema/<int:pk>/', CinemaAPIRetrieve.as_view()),
+    path('api/cinemas/', CinemaAPIList.as_view()),
 ]
