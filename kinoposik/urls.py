@@ -16,6 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from kinopoisk_app.views import *
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/actors/', ActorAPIList.as_view()),
+    path('api/actor/<int:pk>/', ActorAPIRetrieve.as_view()),
+    path('api/filmdirector/<int:pk>/', FilmDirectorAPIRetrieve.as_view()),
+    path('api/filmdirectors/', FilmDirectorAPIList.as_view()),
 ]
