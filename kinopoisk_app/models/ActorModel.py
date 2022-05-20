@@ -15,11 +15,3 @@ class Actor(models.Model):
         verbose_name = "Актер"
         verbose_name_plural = "Актеры"
 
-
-class ActorInMovie(models.Model):
-    actor = models.ForeignKey('Actor', on_delete=models.CASCADE)
-    movie = models.ForeignKey('Movie', on_delete=models.CASCADE)
-    role = models.CharField(max_length=250, null=True, blank=True)
-
-    def __str__(self):
-        return f'{self.actor.first_name} played in {self.movie.name}'

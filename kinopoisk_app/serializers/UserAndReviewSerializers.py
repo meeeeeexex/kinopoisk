@@ -7,10 +7,10 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = [
-                  'user_id',
+                  'id',
                   'full_name',
                   'created_at',
-                  'fav_genres',
+                  'favorite_genres',
                   ]
 
 
@@ -18,7 +18,7 @@ class ReviewSerializer(serializers.ModelSerializer):
     class Meta:
         model = Review
         fields = [
-                  'review_id',
+                  'id',
                   'user',
                   'movie',
                   'review_text',
