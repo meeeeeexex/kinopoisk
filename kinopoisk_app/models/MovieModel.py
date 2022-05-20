@@ -13,8 +13,8 @@ class Movie(models.Model):
     picture_blob = models.ImageField(upload_to='photos/%Y/%m/%d/', height_field=None, width_field=None, max_length=100)
     review = models.ManyToManyField('kinopoisk_app.User', through='Review',
                                     null=True)  # TODO: Обсудить добавить fk User -> through Review
-    film_director = models.ForeignKey('FilmDirector', on_delete=models.CASCADE, null=True)
-    actor_squad = models.ManyToManyField('Actor')
+    film_director = models.ForeignKey('kinopoisk_app.FilmDirector', on_delete=models.CASCADE, null=True)
+    actor_squad = models.ManyToManyField('kinopoisk_app.Actor')
 
     def __str__(self):
         return self.name
