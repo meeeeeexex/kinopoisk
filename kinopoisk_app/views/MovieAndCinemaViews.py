@@ -2,7 +2,7 @@ from kinopoisk_app.models import Movie
 from kinopoisk_app.models.CinemaModel import Cinema
 from rest_framework import generics
 
-from kinopoisk_app.serializers.MovieAndCinemaSerializers import MovieSerializer, CinemaSerializer
+from kinopoisk_app.serializers import MovieSerializer, CinemaSerializer
 
 
 class MovieAPIList(generics.ListAPIView):
