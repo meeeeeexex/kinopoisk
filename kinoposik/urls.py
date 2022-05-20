@@ -16,15 +16,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from kinopoisk_app.views.ActorAndDirectorViews import *
+from kinopoisk_app.views.ActorAndDirectorViews import ArtorView
 from kinopoisk_app.views.MovieAndCinemaViews import CinemaAPIRetrieve, CinemaAPIList
 from kinopoisk_app.views.UserAndReviewViews import *
 from kinopoisk_app.views.MovieAndCinemaViews import MovieAPIList, MovieAPIRetrieve
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/actors/', ActorAPIList.as_view()),
-    path('api/actor/<int:pk>/', ActorAPIRetrieve.as_view()),
+    path('api/actors/', ArtorView.as_view({'get': 'list'})),
+    path('api/actor/<int:pk>/', ArtorView.as_view({'get': 'retrieve'}),
     path('api/filmdirector/<int:pk>/', FilmDirectorAPIRetrieve.as_view()),
     path('api/filmdirectors/', FilmDirectorAPIList.as_view()),
     path('api/movies/', MovieAPIList.as_view()),
