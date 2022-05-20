@@ -1,12 +1,13 @@
 from django.db import models
 import uuid
+from kinopoisk_app.models.Genre import Genre
 
 
 class Movie(models.Model):
     movie_id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True, primary_key=True)
     name = models.CharField(max_length=100)
     # Todo: переделать жанры одинаково
-    genre = models.CharField(max_length=50)
+    genre = models.ForeignKey(Genre, on_delete=models.PROTECT)
     description = models.TextField(null=True, blank=True)
     user_rating = models.IntegerField(default=0)
     critique_rating = models.IntegerField(default=0)
