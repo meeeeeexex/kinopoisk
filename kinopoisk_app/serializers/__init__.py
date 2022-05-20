@@ -1,2 +1,1 @@
-from .ActorAndFilmDirectorSerializer import *
-from .UserAndReviewSerializers import *
+from . import *
