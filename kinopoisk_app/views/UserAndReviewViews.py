@@ -9,6 +9,6 @@ class UserView(viewsets.ReadOnlyModelViewSet):
 
 
 class ReviewView(viewsets.ReadOnlyModelViewSet):
-    #TODO: lookup_field или другая идея как обойти pk как uuid
+    # TODO: lookup_field или другая идея как обойти pk как uuid
     queryset = Review.objects.all()
     serializer_class = ReviewSerializer
