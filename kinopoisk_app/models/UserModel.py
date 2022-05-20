@@ -34,6 +34,11 @@ class Genres:
     NOT_SPECIFIED = 'Not specified'
 
 
+# class Genre(BaseModel):
+#     name = models.CharField(max_length=50)
+
+
+
 class User(models.Model):
     user_id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True, primary_key=True)
     full_name = models.CharField(max_length=250, null=False)
@@ -46,12 +51,8 @@ class User(models.Model):
 
     # TODO: Обсудить как будем хранить все жанры,
     # я предлагаю хранить через выбор, чтобы человек мог сам выбрать
-    fav_genres = models.CharField(
-        max_length=100,
-        choices=Genres.ALL_GENRES,
-        default=Genres.NOT_SPECIFIED
-    )
+    favourite_genres = models.ManyToManyField(Genre)
     picture = models.ImageField(upload_to='photos/%Y/%m/%d/', height_field=None, width_field=None, max_length=100)
 
     def __str__(self):
-        return f'{self.full_name} has {self.fav_genres} favourite genres'
+        return f'{self.full_name} has {self.fav_genres} as favourite genres'
