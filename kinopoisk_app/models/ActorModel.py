@@ -1,4 +1,3 @@
-
 from django.db import models
 
 
@@ -15,3 +14,4 @@ class Actor(models.Model):
     class Meta:
         verbose_name = "Актер"
         verbose_name_plural = "Актеры"
+

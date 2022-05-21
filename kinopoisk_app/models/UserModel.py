@@ -12,16 +12,17 @@ def get_all_countries() -> List[str]:
     return available_countries
 
 
-def get_all_genres() -> List[str]:
-    return ['Action',
-            'Comedy',
-            'Drama',
-            'Fantasy',
-            'Horror',
-            'Mystery',
-            'Romance',
-            'Thriller',
-            'Western', ]
+ALL_GENRES = [
+    'Action',
+    'Comedy',
+    'Drama',
+    'Fantasy',
+    'Horror',
+    'Mystery',
+    'Romance',
+    'Thriller',
+    'Western',
+]
 
 
 class Countries:
@@ -30,28 +31,29 @@ class Countries:
 
 
 class Genres:
-    ALL_GENRES = ((genre_item, genre_item) for genre_item in get_all_genres())
+    ALL_GENRES = ((genre_item, genre_item) for genre_item in ALL_GENRES)
     NOT_SPECIFIED = 'Not specified'
 
 
-class User(models.Model):
-    user_id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True, primary_key=True)
-    full_name = models.CharField(max_length=250, null=False)
-    created_at = models.DateField(auto_now_add=True, db_index=True)
-    country = models.CharField(
-        max_length=100,
-        choices=Countries.ALL_COUNTRIES,
-        default=Countries.NOT_SPECIFIED
-    )
+class Genre(models.Model):
+    name = models.CharField('Любимый жанр',
+                            max_length=100,
+                            choices=Genres.ALL_GENRES,
+                            default=Genres.NOT_SPECIFIED
+                            )
 
-    # TODO: Обсудить как будем хранить все жанры,
-    # я предлагаю хранить через выбор, чтобы человек мог сам выбрать
-    fav_genres = models.CharField(
-        max_length=100,
-        choices=Genres.ALL_GENRES,
-        default=Genres.NOT_SPECIFIED
-    )
+
+class User(models.Model):
+    id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True, primary_key=True)
+    full_name = models.CharField('Полное имя', max_length=250, null=False)
+    created_at = models.DateField('Дата создания', auto_now_add=True, db_index=True)
+    country = models.CharField('Страна',
+                               max_length=100,
+                               choices=Countries.ALL_COUNTRIES,
+                               default=Countries.NOT_SPECIFIED
+                               )
+    favorite_genres = models.ManyToManyField('kinopoisk_app.Genre')
     picture = models.ImageField(upload_to='photos/%Y/%m/%d/', height_field=None, width_field=None, max_length=100)
 
     def __str__(self):
-        return f'{self.full_name} has {self.fav_genres} favourite genres'
+        return f'{self.full_name} has {self.favorite_genres} as favourite genres'

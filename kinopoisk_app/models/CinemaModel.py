@@ -3,7 +3,7 @@ import uuid
 
 
 class Cinema(models.Model):
-    cinema_id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True, primary_key=True)
+    id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True, primary_key=True)
     cinema_name = models.CharField(max_length=100)
     address = models.CharField(max_length=100)
     avaliable_movies = models.ManyToManyField('Movie')
