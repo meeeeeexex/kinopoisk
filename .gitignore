@@ -3,6 +3,7 @@ venv
 db.sqlite3
 agency_models
 __pycache__
+.pyc
 # Distribution / packaging
 bin/
 build/

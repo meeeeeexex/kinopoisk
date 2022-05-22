@@ -2,8 +2,8 @@
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
 
-from kinopoisk_app.models.ActorModel import Actor
-from kinopoisk_app.models.FilmDirectorModel import FilmDirector
+from kinopoisk_app.models.Actor import Actor
+from kinopoisk_app.models.Director import Director
 from kinopoisk_app.serializers import ActorSerializer, FilmDirectorSerializer
 
 
@@ -22,7 +22,7 @@ class ActorAPIRetrieve(generics.RetrieveAPIView):
 
 class FilmDirectorAPIList(generics.ListAPIView):
     """Лист всех режиссеров"""
-    queryset = FilmDirector.objects.all()
+    queryset = Director.objects.all()
     serializer_class = FilmDirectorSerializer
 
 

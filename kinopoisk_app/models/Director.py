@@ -2,7 +2,7 @@
 from django.db import models
 
 
-class FilmDirector(models.Model):
+class Director(models.Model):
     first_name = models.CharField("Имя", max_length=150)
     second_name = models.CharField("Фамилия", max_length=150)
     bio = models.TextField("Информация о режиссере", null=True, blank=True)

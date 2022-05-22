@@ -1,8 +1,8 @@
 from rest_framework import serializers
-from kinopoisk_app.models.FilmDirectorModel import FilmDirector
+from kinopoisk_app.models.Director import Director
 
 
 class FilmDirectorSerializer(serializers.ModelSerializer):
     class Meta:
-        model = FilmDirector
+        model = Director
         fields = "__all__"

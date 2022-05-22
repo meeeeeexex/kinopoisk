@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from kinopoisk_app.models.UserModel import User
+from kinopoisk_app.models.User import User
 
 
 class UserSerializer(serializers.ModelSerializer):
