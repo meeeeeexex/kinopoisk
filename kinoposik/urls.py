@@ -7,11 +7,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from kinopoisk_app.views.ActorAndDirectorViews import *
+from kinopoisk_app.views.ActorAndDirectorViews import ActorAPIList, ActorAPIRetrieve, FilmDirectorAPIList, \
+    FilmDirectorAPIRetrieve
+from kinopoisk_app.views.ReviewView import ReviewView
 from kinopoisk_app.views.Cinema import CinemaView
 from kinopoisk_app.views.Movie import MovieView
-from kinopoisk_app.views.UserAndReviewViews import *
-
+from kinopoisk_app.views.UserViews import UserView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,7 +25,9 @@ urlpatterns = [
     path('api/review/<int:pk>/', ReviewView.as_view({'get': 'list'})),
     path('api/reviews/', ReviewView.as_view({'get': 'retrieve'})),
 
-    path('api/movies/', MovieView.as_view()),
-    path('api/cinema/', CinemaView.as_view()),
+    path('api/movies/', MovieView.as_view({'get': 'list'})),
+    path('api/movie/<int:pk>/', MovieView.as_view({'get': 'retrieve'})),
+    path('api/all_cinema/', CinemaView.as_view({'get': 'list'})),
+    path('api/cinema/<int:pk>/', CinemaView.as_view({'get': 'retrieve'})),
 
 ]

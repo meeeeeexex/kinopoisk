@@ -1,5 +1,5 @@
 from rest_framework.permissions import IsAuthenticated
-from kinopoisk_app.models import Cinema
+from kinopoisk_app.models.Cinema import Cinema
 from rest_framework import viewsets
 from kinopoisk_app.serializers.Movie import MovieSerializer
 

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from kinopoisk_app.models.ReviewModel import Review
+from kinopoisk_app.models.Review import Review
 
 
 class ReviewSerializer(serializers.ModelSerializer):

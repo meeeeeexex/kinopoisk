@@ -1,4 +1,4 @@
-from kinopoisk_app.models.ActorModel import Actor
+from kinopoisk_app.models.Actor import Actor
 from rest_framework import serializers
 
 
