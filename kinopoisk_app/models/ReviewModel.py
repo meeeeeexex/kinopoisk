@@ -5,7 +5,7 @@ import uuid
 class Review(models.Model):
     id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True, primary_key=True)
     user = models.ForeignKey('kinopoisk_app.User', on_delete=models.CASCADE)
-    movie = models.ForeignKey('Movie', on_delete=models.CASCADE)
+    movie = models.ForeignKey('kinopoisk_app.Movie', on_delete=models.CASCADE)
     review_text = models.TextField(null=False)
 
     def __str__(self):
