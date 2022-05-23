@@ -80,18 +80,16 @@ WSGI_APPLICATION = 'kinoposik.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 DATABASES = {
-# <<<<<<< HEAD
-#     'default': env.db()
-# =======
-   'default': {
-      'ENGINE': 'django.db.backends.postgresql_psycopg2',
-      'NAME': 'postgres',
-      'USER': 'postgres',
-      'PASSWORD': 'admin',
-      'HOST': 'localhost',
-      'PORT': '5432',
-   }
-# >>>>>>> 3a369cf058d8c63c5be15244b396587b46595216
+    'default': env.db()
+#    'default': {
+#       'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#       'NAME': 'postgres',
+#       'USER': 'postgres',
+#       'PASSWORD': 'admin',
+#       'HOST': 'localhost',
+#       'PORT': '5432',
+#    }
+
 }
 
 
