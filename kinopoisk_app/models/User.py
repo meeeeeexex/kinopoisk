@@ -1,16 +1,20 @@
 from django.db import models
-import pycountry
-from typing import List
+from django.utils.translation import gettext_lazy as _
+# import pycountry
+# from typing import List
 import uuid
 
 
 # для того, чтобы пользователь мог выбирать страну, откуда он -
 # импортируем pycountry
-def get_all_countries() -> List[str]:
-    available_countries = [country_item.name for country_item in pycountry.countries]
-    available_countries.remove('Russian Federation')
-    return available_countries
+from kinopoisk_app.models.common.BaseModel import BaseModel
 
+#
+# def get_all_countries() -> List[str]:
+#     available_countries = [country_item.name for country_item in pycountry.countries]
+#     available_countries.remove('Russian Federation')
+#     return available_countries
+from kinopoisk_app.models.common.Person import Countries
 
 ALL_GENRES = [
     'Action',
@@ -24,10 +28,10 @@ ALL_GENRES = [
     'Western',
 ]
 
-
-class Countries:
-    ALL_COUNTRIES = ((country_item, country_item) for country_item in get_all_countries())
-    NOT_SPECIFIED = 'Not specified'
+#
+# class Countries:
+#     ALL_COUNTRIES = ((country_item, country_item) for country_item in get_all_countries())
+#     NOT_SPECIFIED = 'Not specified'
 
 
 class Genres:
@@ -45,9 +49,9 @@ class Genre(models.Model):
 
 class User(models.Model):
     id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True, primary_key=True)
-    full_name = models.CharField('Полное имя', max_length=250, null=False)
-    created_at = models.DateField('Дата создания', auto_now_add=True, db_index=True)
-    country = models.CharField('Страна',
+    full_name = models.CharField(_('Полное имя'), max_length=250, null=False)
+    created_at = models.DateField(_('Дата создания'), auto_now_add=True, db_index=True)
+    country = models.CharField(_('Страна'),
                                max_length=100,
                                choices=Countries.ALL_COUNTRIES,
                                default=Countries.NOT_SPECIFIED

@@ -4,7 +4,7 @@ from rest_framework import viewsets
 from kinopoisk_app.serializers.Movie import MovieSerializer
 
 
-class MovieView(viewsets.ModelViewSet):
+class MovieView(viewsets.ReadOnlyModelViewSet):
     queryset = Movie.objects.all()
     serializer_class = MovieSerializer
     permission_classes = (IsAuthenticated,)

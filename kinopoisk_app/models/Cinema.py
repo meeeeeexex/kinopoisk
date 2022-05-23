@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-from kinopoisk_app.models.BaseModel import BaseModel
+from kinopoisk_app.models.common.BaseModel import BaseModel
 
 
 class Cinema(BaseModel):
