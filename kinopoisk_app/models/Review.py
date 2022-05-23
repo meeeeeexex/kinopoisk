@@ -1,7 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
 import uuid
-from kinopoisk_app.models.common.BaseModel import BaseModel
 
 
 class Review(models.Model):
