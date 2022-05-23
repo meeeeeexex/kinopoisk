@@ -1,13 +1,20 @@
+from django.contrib.auth.models import User
 from rest_framework import serializers
-from kinopoisk_app.models.User import User
 
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = [
-            'id',
-            'full_name',
-            'created_at',
-            'favorite_genres',
+            "id",
+            "password",
+            "last_login",
+            "is_superuser",
+            "username",
+            "last_name",
+            "email",
+            "is_staff",
+            "is_active",
+            "date_joined",
+            "first_name",
         ]

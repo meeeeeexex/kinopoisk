@@ -1,4 +1,5 @@
-from kinopoisk_app.models import User
+from django.contrib.auth.models import User
+
 from kinopoisk_app.serializers.User import UserSerializer
 from rest_framework import viewsets
 

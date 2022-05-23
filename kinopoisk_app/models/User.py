@@ -47,17 +47,17 @@ class Genre(models.Model):
                             )
 
 
-class User(models.Model):
-    id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True, primary_key=True)
-    full_name = models.CharField(_('Полное имя'), max_length=250, null=False)
-    created_at = models.DateField(_('Дата создания'), auto_now_add=True, db_index=True)
-    country = models.CharField(_('Страна'),
-                               max_length=100,
-                               choices=Countries.ALL_COUNTRIES,
-                               default=Countries.NOT_SPECIFIED
-                               )
-    favorite_genres = models.ManyToManyField('kinopoisk_app.Genre')
-    picture = models.ImageField(upload_to='photos/%Y/%m/%d/', height_field=None, width_field=None, max_length=100)
-
-    def __str__(self):
-        return f'{self.full_name} has {self.favorite_genres} as favourite genres'
+# class User(models.Model):
+#     id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True, primary_key=True)
+#     full_name = models.CharField(_('Полное имя'), max_length=250, null=False)
+#     created_at = models.DateField(_('Дата создания'), auto_now_add=True, db_index=True)
+#     country = models.CharField(_('Страна'),
+#                                max_length=100,
+#                                choices=Countries.ALL_COUNTRIES,
+#                                default=Countries.NOT_SPECIFIED
+#                                )
+#     favorite_genres = models.ManyToManyField('kinopoisk_app.Genre')
+#     picture = models.ImageField(upload_to='photos/%Y/%m/%d/', height_field=None, width_field=None, max_length=100)
+#
+#     def __str__(self):
+#         return f'{self.full_name} has {self.favorite_genres} as favourite genres'
