@@ -1,20 +1,17 @@
 from django.db import models
-from django.utils.translation import gettext_lazy as _
+
 # import pycountry
 # from typing import List
-import uuid
 
 
 # для того, чтобы пользователь мог выбирать страну, откуда он -
 # импортируем pycountry
-from kinopoisk_app.models.common.BaseModel import BaseModel
 
 #
 # def get_all_countries() -> List[str]:
 #     available_countries = [country_item.name for country_item in pycountry.countries]
 #     available_countries.remove('Russian Federation')
 #     return available_countries
-from kinopoisk_app.models.common.Person import Countries
 
 ALL_GENRES = [
     'Action',
