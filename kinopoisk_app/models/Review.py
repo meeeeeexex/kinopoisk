@@ -1,5 +1,6 @@
 from django.db import models
 import uuid
+from kinopoisk_app.models.common.BaseModel import BaseModel
 
 
 class Review(models.Model):
@@ -11,3 +12,4 @@ class Review(models.Model):
     def __str__(self):
         return f'{self.user.full_name} reviews {self.movie.name}:' \
                f'{self.review_text[:30]}'
+
