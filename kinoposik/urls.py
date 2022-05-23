@@ -4,7 +4,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from kinopoisk_app.views import DirectorView
 from kinopoisk_app.views.Actor import ActorView
 from kinopoisk_app.views.Review import ReviewView
@@ -26,5 +26,7 @@ urlpatterns = [
     path('api/movie/<int:pk>/', MovieView.as_view({'get': 'retrieve'})),
     path('api/all_cinema/', CinemaView.as_view({'get': 'list'})),
     path('api/cinema/<int:pk>/', CinemaView.as_view({'get': 'retrieve'})),
+    #AUTH
+    path('api/auth/', include('rest_framework.urls'))
 
 ]
