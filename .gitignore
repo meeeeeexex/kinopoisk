@@ -4,8 +4,6 @@ db.sqlite3
 agency_models
 __pycache__
 .pyc
-*.pyc
-
 # Distribution / packaging
 bin/
 build/
@@ -35,4 +33,3 @@ coverage.xml
 # Django stuff:
 *.log
 *.pot
-.env
