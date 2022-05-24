@@ -5,3 +5,4 @@ from .Director import *
 from .Review import *
 from .Movie import *
 from .Cinema import *
+from .Genre import *

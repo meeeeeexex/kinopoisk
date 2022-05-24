@@ -14,19 +14,14 @@ from kinopoisk_app.views.User import UserView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/actors/', ActorView.as_view({'get': 'list'})),
-    path('api/actor/<int:pk>/', ActorView.as_view({'get': 'retrieve'})),
-    path('api/director/<int:pk>/', DirectorView.as_view({'get': 'retrieve'})),
-    path('api/directors/', DirectorView.as_view({'get': 'list'})),
-    path('api/users/', UserView.as_view({'get': 'list'})),
-    path('api/user/<int:pk>/', UserView.as_view({'get': 'retrieve'})),
-    path('api/review/<int:pk>/', ReviewView.as_view({'get': 'retrieve'})),
-    path('api/reviews/', ReviewView.as_view({'get': 'list'})),
-    path('api/movies/', MovieView.as_view({'get': 'list'})),
-    path('api/movie/<int:pk>/', MovieView.as_view({'get': 'retrieve'})),
-    path('api/all_cinema/', CinemaView.as_view({'get': 'list'})),
-    path('api/cinema/<int:pk>/', CinemaView.as_view({'get': 'retrieve'})),
-    #AUTH
+    path('api/', include('kinopoisk_app.urls.User')),
+    path('api/', include('kinopoisk_app.urls.Movie')),
+    path('api/', include('kinopoisk_app.urls.Cinema')),
+    path('api/', include('kinopoisk_app.urls.Actor')),
+    path('api/', include('kinopoisk_app.urls.Director')),
+    path('api/', include('kinopoisk_app.urls.Review')),
+
+    # AUTH
     path('api/auth/', include('rest_framework.urls'))
 
 ]

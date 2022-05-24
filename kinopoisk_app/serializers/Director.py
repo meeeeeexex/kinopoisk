@@ -9,5 +9,4 @@ class DirectorSerializer(serializers.ModelSerializer):
             'first_name',
             'last_name',
             'bio',
-            'filmography',
         ]
