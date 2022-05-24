@@ -9,5 +9,5 @@ class ActorSerializer(serializers.ModelSerializer):
                   'first_name',
                   'last_name',
                   'bio',
-                  'filmography',
+                  'filmography_id',
                   ]

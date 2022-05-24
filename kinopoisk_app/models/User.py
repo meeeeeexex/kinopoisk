@@ -1,3 +1,4 @@
+
 from django.db import models
 
 # import pycountry
@@ -13,17 +14,17 @@ from django.db import models
 #     available_countries.remove('Russian Federation')
 #     return available_countries
 
-ALL_GENRES = [
-    'Action',
-    'Comedy',
-    'Drama',
-    'Fantasy',
-    'Horror',
-    'Mystery',
-    'Romance',
-    'Thriller',
-    'Western',
-]
+# ALL_GENRES = [
+#     'Action',
+#     'Comedy',
+#     'Drama',
+#     'Fantasy',
+#     'Horror',
+#     'Mystery',
+#     'Romance',
+#     'Thriller',
+#     'Western',
+# ]
 
 #
 # class Countries:
@@ -31,17 +32,21 @@ ALL_GENRES = [
 #     NOT_SPECIFIED = 'Not specified'
 
 
-class Genres:
-    ALL_GENRES = ((genre_item, genre_item) for genre_item in ALL_GENRES)
-    NOT_SPECIFIED = 'Not specified'
-
-
-class Genre(models.Model):
-    name = models.CharField('Любимый жанр',
-                            max_length=100,
-                            choices=Genres.ALL_GENRES,
-                            default=Genres.NOT_SPECIFIED
-                            )
+# class Genres:
+#     ALL_GENRES = ((genre_item, genre_item) for genre_item in ALL_GENRES)
+#     NOT_SPECIFIED = 'Not specified'
+#
+#
+# class Genre(models.Model):
+#     name = models.CharField('Любимый жанр',
+#                             max_length=100,
+#                             choices=Genres.ALL_GENRES,
+#                             default=Genres.NOT_SPECIFIED
+#                             )
+#
+#     class Meta:
+#         verbose_name = "Жанр"
+#         verbose_name_plural = "Жанры"
 
 
 # class User(models.Model):

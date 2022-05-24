@@ -5,11 +5,6 @@ from django.utils.translation import gettext_lazy as _
 
 
 class Director(Person):
-    country = models.CharField(_('Страна'),
-                               max_length=100,
-                               choices=Countries.ALL_COUNTRIES,
-                               default=Countries.NOT_SPECIFIED
-                               )
 
     class Meta:
         verbose_name = "Режиссер"

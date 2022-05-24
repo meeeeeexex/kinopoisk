@@ -80,7 +80,7 @@ WSGI_APPLICATION = 'kinoposik.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 DATABASES = {
-    'default': env.db()
+   'default': env.db(),
 }
 
 
