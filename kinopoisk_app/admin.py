@@ -24,8 +24,8 @@ class ActorAdmin(admin.ModelAdmin):
     list_filter = ("country", "last_name")
 
 
-admin.site.register(Director)
-admin.site.register(Actor)
+admin.site.register(Director, DirectorAdmin)
+admin.site.register(Actor, ActorAdmin)
 admin.site.register(Cinema)
 admin.site.register(Movie)
 admin.site.register(Review)

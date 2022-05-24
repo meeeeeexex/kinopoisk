@@ -7,7 +7,4 @@ class ActorSerializer(serializers.ModelSerializer):
         model = Actor
         fields = [
                   'first_name',
-                  'last_name',
-                  'bio',
-                  'filmography_id',
                   ]
