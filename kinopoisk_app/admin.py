@@ -5,8 +5,28 @@ from kinopoisk_app.models.Actor import Actor
 from kinopoisk_app.models.Cinema import Cinema
 from kinopoisk_app.models.Movie import Movie
 from kinopoisk_app.models.Review import Review
-admin.site.register(Actor)
+from kinopoisk_app.models.Genre import Genre
+
+
+class DirectorAdmin(admin.ModelAdmin):
+    list_display = ('id', 'first_name', 'last_name', 'country',)
+    list_display_links = ('id', 'first_name')
+    search_fields = ('country',)
+    list_editable = ("country",)
+    list_filter = ("country", "last_name")
+
+
+class ActorAdmin(admin.ModelAdmin):
+    list_display = ('id', 'first_name', 'last_name', 'country',)
+    list_display_links = ('id', 'first_name')
+    search_fields = ('country',)
+    list_editable = ("country",)
+    list_filter = ("country", "last_name")
+
+
+admin.site.register(Director, DirectorAdmin)
+admin.site.register(Actor, ActorAdmin)
 admin.site.register(Cinema)
-admin.site.register(Director)
 admin.site.register(Movie)
 admin.site.register(Review)
+admin.site.register(Genre)
