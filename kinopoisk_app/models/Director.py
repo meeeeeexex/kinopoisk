@@ -5,7 +5,6 @@ from django.utils.translation import gettext_lazy as _
 
 
 class Director(Person):
-
     class Meta:
         verbose_name = "Режиссер"
         verbose_name_plural = "Режиссеры"
