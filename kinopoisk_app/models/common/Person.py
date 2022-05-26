@@ -20,8 +20,8 @@ class Person(BaseModel):
     first_name = models.CharField(_("Имя"), max_length=158)
     last_name = models.CharField(_("Фамилия"), max_length=150)
     bio = models.TextField(_("Информация"), null=True, blank=True)
-    picture = models.ImageField(_("Фото"), upload_to='photos/%Y/%m/%d/', height_field=None, width_field=None, null=True,
-                                blank=True)
+    # picture = models.ImageField(_("Фото"), upload_to='photos/%Y/%m/%d/', height_field=None, width_field=None, null=True,
+    #                             blank=True)
     country = models.CharField(_('Страна'),
                                max_length=100,
                                choices=Countries.ALL_COUNTRIES,
@@ -33,4 +33,3 @@ class Person(BaseModel):
 
     class Meta:
         abstract = True
-        ordering = ['-created', ]
