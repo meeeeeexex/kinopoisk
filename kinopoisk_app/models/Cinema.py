@@ -6,7 +6,7 @@ from kinopoisk_app.models.common.BaseModel import BaseModel
 class Cinema(BaseModel):
     name = models.CharField(_("Название"), max_length=100)
     address = models.CharField(_("Адрес"), max_length=100)
-    avaliable_movies = models.ManyToManyField('kinopoisk_app.Movie')
+    avaliable_movies = models.ManyToManyField('kinopoisk_app.Movie', verbose_name="Доступные фильмы", null=True, blank=True)
 
     def __str__(self):
         return self.name
