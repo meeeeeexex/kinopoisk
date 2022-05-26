@@ -2,9 +2,14 @@ from django.db import models
 
 ALL_GENRES = [
     'Action',
+    'Adventure',
+    'Animation',
+    'Biography',
     'Comedy',
+    'Crime',
     'Drama',
     'Fantasy',
+    'Film-Noir',
     'Horror',
     'Mystery',
     'Romance',

@@ -6,6 +6,7 @@ def fill_genres_class():
     for genre in ALL_GENRES:
         new_genre = Genre.objects.create(name=genre)
         new_genre.save()
+    print('Created Genres')
 
 
 if __name__ == '__main__':
