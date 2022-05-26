@@ -2,15 +2,17 @@ from django.contrib.auth.models import User
 from django.db import models
 import uuid
 
+from kinopoisk_app.models.common import BaseModel
 
-class Review(models.Model):
-    id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True, primary_key=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    movie = models.ForeignKey('kinopoisk_app.Movie', on_delete=models.CASCADE)
-    review_text = models.TextField(null=False)
+
+class Review(BaseModel):
+    # id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True, primary_key=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Пользователь")
+    movie = models.ForeignKey('kinopoisk_app.Movie', on_delete=models.CASCADE, verbose_name="Фильм")
+    review_text = models.TextField(null=False, verbose_name="Отзыв")
 
     def __str__(self):
-        return f'{self.user.full_name} reviews {self.movie.name}:' \
+        return f'{self.user.first_name} reviews {self.movie.name}:' \
                f'{self.review_text[:30]}'
 
     class Meta:

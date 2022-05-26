@@ -5,7 +5,7 @@ from django.utils.translation import gettext_lazy as _
 
 
 class Director(Person):
-    filmography = models.ManyToManyField('Movie', null=True, blank=True)
+    filmography = models.ManyToManyField('Movie', null=True, blank=True, verbose_name="Фильмы", related_name="director")
 
     class Meta:
         verbose_name = "Режиссер"

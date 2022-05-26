@@ -13,7 +13,7 @@ class Movie(BaseModel):
     critique_rating = models.IntegerField(_("Рейтинг критика"), default=0)
     picture_blob = models.ImageField(_("Фото"), upload_to='photos/%Y/%m/%d/', max_length=100, null=True, blank=True)
     film_director = models.ForeignKey('kinopoisk_app.Director', on_delete=models.CASCADE, verbose_name="Режиссер")
-    actor_squad = models.ManyToManyField(Actor)
+    actor_squad = models.ManyToManyField(Actor, verbose_name="Актеры", related_name="movies")
 
     def __str__(self):
         return self.name

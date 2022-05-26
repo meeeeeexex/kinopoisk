@@ -8,6 +8,6 @@ class CinemaSerializer(serializers.ModelSerializer):
         fields = [
             'name',
             'address',
-            'avaliable_movies',
+            'available_movies',
 
         ]
