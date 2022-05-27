@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
-from users.models import CustomUser
+from kinopoisk_app.models import CustomUser
 import uuid
 
 from kinopoisk_app.models.common import BaseModel

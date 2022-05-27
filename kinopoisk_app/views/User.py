@@ -1,7 +1,7 @@
 from rest_framework.permissions import AllowAny, IsAuthenticated
 
 from kinoposik import settings
-from users.models import CustomUser
+from kinopoisk_app.models import CustomUser
 from kinopoisk_app.serializers.User import UserSerializer
 from rest_framework import viewsets
 

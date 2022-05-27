@@ -19,13 +19,6 @@ def fill_genres_class():
     print('Genre is Filled')
 
 
-# def parse_data(dict_data: dict):
-#     res_dict = {}
-#     for movie_name, movie_genre in dict_data.items():
-#         res_dict[movie_name[movie_name.find('.') + 2:]] = movie_genre
-#     return res_dict
-
-
 def create_movie_objects(dict_data: dict):
     for movie_name, movie_items in dict_data.items():
         genre, director, actor_squad = movie_items
@@ -43,7 +36,10 @@ def create_movie_objects(dict_data: dict):
             )
 
         else:
-            director_item = Director.objects.create()
+            director_item = Director.objects.create(
+                first_name=director_name,
+                last_name=director_lastname
+            )
             director_item.save()
 
         if Movie.objects.filter(
@@ -52,6 +48,7 @@ def create_movie_objects(dict_data: dict):
             continue
 
         else:
+
             movie = Movie.objects.create(
                 name=movie_name,
                 genre=movie_genre, film_director=director_item)
