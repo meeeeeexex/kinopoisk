@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
+from users.models import CustomUser
 import uuid
 
 from kinopoisk_app.models.common import BaseModel
@@ -7,7 +8,7 @@ from kinopoisk_app.models.common import BaseModel
 
 class Review(BaseModel):
     # id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True, primary_key=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Пользователь")
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, verbose_name="Пользователь")
     movie = models.ForeignKey('kinopoisk_app.Movie', on_delete=models.CASCADE, verbose_name="Фильм")
     review_text = models.TextField(null=False, verbose_name="Отзыв")
 
