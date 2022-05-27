@@ -43,7 +43,10 @@ def create_movie_objects(dict_data: dict):
             )
 
         else:
-            director_item = Director.objects.create()
+            director_item = Director.objects.create(
+                first_name=director_name,
+                last_name=director_lastname
+            )
             director_item.save()
 
         if Movie.objects.filter(
