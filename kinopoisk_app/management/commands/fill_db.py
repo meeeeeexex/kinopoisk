@@ -48,6 +48,7 @@ def create_movie_objects(dict_data: dict):
             continue
 
         else:
+
             movie = Movie.objects.create(
                 name=movie_name,
                 genre=movie_genre, film_director=director_item)

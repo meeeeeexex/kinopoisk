@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'kinopoisk_app.apps.KinopoiskAppConfig',
-    'users.apps.UsersConfig',
     'django_extensions',
     'rest_framework',
 ]
@@ -126,7 +125,7 @@ STATICFILES_DIRS = [
 ]
 
 # User
-AUTH_USER_MODEL = 'users.CustomUser'
+AUTH_USER_MODEL = 'kinopoisk_app.CustomUser'
 
 
 # Default primary key field type
