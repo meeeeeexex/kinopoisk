@@ -29,7 +29,6 @@ def main():
         movies_list.append((movie_name, movie_link))
 
     movies_genres = {}
-    directors_dict = {}
 
     for position, (movie_name, link) in enumerate(movies_list):
         driver.get(link)
