@@ -1,19 +1,35 @@
 from rest_framework import serializers
 from kinopoisk_app.models.Movie import Movie
+from kinopoisk_app.serializers import ReviewSerializer
 
 
 class MovieSerializer(serializers.ModelSerializer):
-    actor_squad = serializers.StringRelatedField(many=True)
     genre = serializers.StringRelatedField()
+
     class Meta:
         model = Movie
         fields = [
-            'id',
             'name',
             'genre',
+        ]
+
+
+class MovieRetrieveSerializer(serializers.ModelSerializer):
+    actor_squad = serializers.StringRelatedField(many=True)
+    genre = serializers.StringRelatedField()
+    film_director = serializers.StringRelatedField()
+    reviews = ReviewSerializer(many=True)
+
+    class Meta:
+        model = Movie
+        fields = [
+            'name',
+            'genre',
+            'description',
             'user_rating',
             'critique_rating',
-            'director',
+            'picture_blob',
+            'film_director',
             'actor_squad',
-
+            'reviews',
         ]
