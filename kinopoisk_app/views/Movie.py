@@ -1,13 +1,19 @@
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from kinopoisk_app.models import Movie
-from rest_framework import viewsets
-from kinopoisk_app.serializers.Movie import MovieSerializer
+from rest_framework import viewsets, serializers
+from kinopoisk_app.serializers.Movie import MovieSerializer, MovieRetrieveSerializer
 
 
 class MovieView(viewsets.ReadOnlyModelViewSet):
     queryset = Movie.objects.all()
     serializer_class = MovieSerializer
-    lookup_field = "id"
+    lookup_field = "name"
+
+    def get_serializer_class(self):
+        if self.action == 'list':
+            return MovieSerializer
+        if self.action == 'retrieve':
+            return MovieRetrieveSerializer
 
     def get_permissions(self):
         if self.action == 'list':
