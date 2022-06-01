@@ -24,3 +24,7 @@ class CustomUser(AbstractUser):
                                choices=Countries.ALL_COUNTRIES,
                                default=Countries.NOT_SPECIFIED
                                )
+
+    class Meta:
+        verbose_name = "Пользователь"
+        verbose_name_plural = "Пользователи"

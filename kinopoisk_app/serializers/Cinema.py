@@ -6,9 +6,17 @@ class CinemaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Cinema
         fields = [
-            'id',
+            'name',
+        ]
+
+
+class CinemaRetrieveSerializer(serializers.ModelSerializer):
+    avaliable_movies = serializers.StringRelatedField(many=True)
+
+    class Meta:
+        model = Cinema
+        fields = [
             'name',
             'address',
-            'available_movies',
-
+            'avaliable_movies',
         ]
