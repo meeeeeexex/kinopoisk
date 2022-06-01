@@ -6,9 +6,7 @@ class ReviewSerializer(serializers.ModelSerializer):
     class Meta:
         model = Review
         fields = [
-                  'id',
                   'user',
-                  'movie',
                   'review_text',
                   ]
 

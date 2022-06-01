@@ -1,4 +1,3 @@
-
 from rest_framework import serializers
 from kinopoisk_app.models import CustomUser
 

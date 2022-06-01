@@ -6,7 +6,6 @@ from rest_framework import viewsets
 
 
 class ReviewView(viewsets.ReadOnlyModelViewSet):
-    queryset = Review.objects.all()
     serializer_class = ReviewSerializer
     lookup_field = "id"
 
@@ -16,3 +15,4 @@ class ReviewView(viewsets.ReadOnlyModelViewSet):
         else:
             permission_classes = [IsAuthenticated]
         return [permission() for permission in permission_classes]
+
