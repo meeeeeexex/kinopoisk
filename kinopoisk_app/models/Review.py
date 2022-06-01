@@ -5,7 +5,6 @@ from kinopoisk_app.models.common import BaseModel
 
 
 class Review(BaseModel):
-    # id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True, primary_key=True)
     headline = models.CharField(max_length=100, verbose_name="Заголовок")
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, verbose_name="Пользователь")
     movie = models.ForeignKey('kinopoisk_app.Movie', on_delete=models.CASCADE, verbose_name="Фильм", related_name='reviews')

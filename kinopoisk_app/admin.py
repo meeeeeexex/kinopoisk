@@ -1,5 +1,4 @@
 from django.contrib import admin
-from django.contrib.auth import get_user_model
 
 from kinopoisk_app.models.Director import Director
 from kinopoisk_app.models.Actor import Actor
@@ -12,7 +11,7 @@ from kinopoisk_app.models.User import CustomUser
 
 class DirectorAdmin(admin.ModelAdmin):
     list_display = ('id', 'first_name', 'last_name', 'country',)
-    list_display_links = ('id', 'first_name')
+    list_display_links = ('id',)
     search_fields = ('country',)
     list_editable = ("country",)
     list_filter = ("country", "last_name")
@@ -20,7 +19,7 @@ class DirectorAdmin(admin.ModelAdmin):
 
 class ActorAdmin(admin.ModelAdmin):
     list_display = ('id', 'first_name', 'last_name', 'country',)
-    list_display_links = ('id', 'first_name')
+    list_display_links = ('id',)
     search_fields = ('country',)
     list_editable = ("country",)
     list_filter = ("country", "last_name")
