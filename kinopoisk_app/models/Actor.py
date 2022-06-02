@@ -4,7 +4,6 @@ from kinopoisk_app.models.common.Person import Person
 
 
 class Actor(Person, models.Model):
-    filmography = models.ManyToManyField('Movie', verbose_name="Фильмы", null=True, blank=True, related_name="actors")
 
     class Meta:
         verbose_name = "Актер"

@@ -16,9 +16,8 @@ from kinopoisk_app.models.common.Person import Countries, Person
 
 
 class CustomUser(AbstractUser):
-    favorite_movies = models.ManyToManyField('kinopoisk_app.Movie', verbose_name='Избранные фильмы', null=True,
-                                             blank=True)
-    favorite_genres = models.ManyToManyField('kinopoisk_app.Genre', verbose_name='Любимые жанры', null=True, blank=True)
+    favorite_movies = models.ManyToManyField('kinopoisk_app.Movie', verbose_name='Избранные фильмы', blank=True)
+    favorite_genres = models.ManyToManyField('kinopoisk_app.Genre', verbose_name='Любимые жанры', blank=True)
     country = models.CharField('Страна',
                                max_length=100,
                                choices=Countries.ALL_COUNTRIES,
