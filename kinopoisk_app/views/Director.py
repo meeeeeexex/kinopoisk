@@ -8,7 +8,7 @@ from rest_framework import viewsets
 class DirectorView(viewsets.ReadOnlyModelViewSet):
     queryset = Director.objects.all()
     serializer_class = DirectorSerializer
-    lookup_field = "first_name"
+    lookup_field = "slug"
 
     def get_permissions(self):
         if self.action == 'list':
