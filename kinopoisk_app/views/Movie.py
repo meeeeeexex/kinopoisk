@@ -7,7 +7,7 @@ from kinopoisk_app.serializers.Movie import MovieSerializer, MovieRetrieveSerial
 class MovieView(viewsets.ReadOnlyModelViewSet):
     queryset = Movie.objects.all()
     serializer_class = MovieSerializer
-    lookup_field = "name"
+    lookup_field = "slug"
 
     def get_serializer_class(self):
         if self.action == 'list':

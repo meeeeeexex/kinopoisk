@@ -8,7 +8,7 @@ from rest_framework import viewsets
 class ActorView(viewsets.ReadOnlyModelViewSet):
     queryset = Actor.objects.all()
     serializer_class = ActorSerializer
-    lookup_field = "first_name"
+    lookup_field = "slug"
 
     def get_permissions(self):
         if self.action == 'list':

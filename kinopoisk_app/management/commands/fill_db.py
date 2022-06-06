@@ -24,7 +24,7 @@ def create_movie_objects(dict_data: dict):
         genre, director, actor_squad = movie_items
         movie_genre = Genre.objects.get(name=genre)
         director_name, director_lastname = director.split()[:2]
-        print(director_name, director_lastname)
+        # print(director_name, director_lastname)
 
         if Director.objects.filter(
                 first_name=director_name,
