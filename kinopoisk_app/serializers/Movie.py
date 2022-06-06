@@ -17,9 +17,9 @@ class MovieSerializer(serializers.ModelSerializer):
 class MovieRetrieveSerializer(serializers.ModelSerializer):
     actor_squad = serializers.StringRelatedField(many=True)
     genre = serializers.StringRelatedField()
-
     film_director = serializers.StringRelatedField()
     reviews = ReviewSerializer(many=True)
+    cinemas = serializers.StringRelatedField(many=True)
 
     class Meta:
         model = Movie
@@ -33,5 +33,5 @@ class MovieRetrieveSerializer(serializers.ModelSerializer):
             'film_director',
             'actor_squad',
             'reviews',
-
+            'cinemas',
         ]

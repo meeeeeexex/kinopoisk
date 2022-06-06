@@ -13,7 +13,7 @@ class DirectorSerializer(serializers.ModelSerializer):
 
 
 class DirectorRetrieveSerializer(serializers.ModelSerializer):
-    filmography = serializers.StringRelatedField(many=True)
+    movies = serializers.StringRelatedField(many=True)
 
     class Meta:
         model = Director
@@ -22,5 +22,5 @@ class DirectorRetrieveSerializer(serializers.ModelSerializer):
             'last_name',
             'country',
             'bio',
-            'filmography'
+            'movies'
         ]
