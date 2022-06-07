@@ -14,6 +14,7 @@ class DirectorSerializer(serializers.ModelSerializer):
 
 class DirectorRetrieveSerializer(serializers.ModelSerializer):
     movies = serializers.StringRelatedField(many=True)
+    country = serializers.CharField()
 
     class Meta:
         model = Director

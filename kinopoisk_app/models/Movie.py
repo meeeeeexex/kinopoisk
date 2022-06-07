@@ -20,7 +20,7 @@ class Movie(BaseModel):
     film_director = models.ForeignKey('kinopoisk_app.Director', on_delete=models.CASCADE, verbose_name="Режиссер",
                                       related_name='movies')
     actor_squad = models.ManyToManyField(Actor, verbose_name="Актеры", related_name="movies")
-    cinemas = models.ManyToManyField('kinopoisk_app.Cinema', verbose_name="Кинотеатры", related_name="avaliable_movies")
+    cinemas = models.ManyToManyField('kinopoisk_app.Cinema', verbose_name="Кинотеатры", related_name="avaliable_movies",blank=True)
 
     def __str__(self):
         return self.name
