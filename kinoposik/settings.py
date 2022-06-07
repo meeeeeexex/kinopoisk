@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'kinopoisk_app.apps.KinopoiskAppConfig',
     'django_extensions',
     'rest_framework',
+    'django_filters',
 ]
 
 
@@ -153,5 +154,8 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
         'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.SessionAuthentication',
-    ]
+    ],
+    'DEFAULT_FILTER_BACKENDS': [
+        'django_filters.rest_framework.DjangoFilterBackend'
+    ],
 }

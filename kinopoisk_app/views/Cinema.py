@@ -1,13 +1,23 @@
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from kinopoisk_app.models.Cinema import Cinema
 from rest_framework import viewsets
-
 from kinopoisk_app.serializers.Cinema import CinemaSerializer, CinemaRetrieveSerializer
+from django_filters.rest_framework import DjangoFilterBackend
+from django_filters import rest_framework as filters
+
+
+class CinemaFilter(filters.FilterSet):
+
+    class Meta:
+        model = Cinema
+        fields = ['city']
 
 
 class CinemaView(viewsets.ReadOnlyModelViewSet):
     queryset = Cinema.objects.all()
     serializer_class = CinemaSerializer
+    filter_backends = (DjangoFilterBackend,)
+    filterset_class = CinemaFilter
     lookup_field = "name"
 
     def get_permissions(self):

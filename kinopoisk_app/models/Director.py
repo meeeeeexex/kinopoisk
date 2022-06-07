@@ -5,7 +5,6 @@ from django.urls import reverse
 
 
 class Director(Person):
-    filmography = models.ManyToManyField('Movie', null=True, blank=True, verbose_name="Фильмы", related_name="director")
     slug = models.SlugField(null=True, unique=True)
 
     class Meta:
