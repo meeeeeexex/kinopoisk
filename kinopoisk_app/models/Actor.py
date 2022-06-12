@@ -23,5 +23,3 @@ class Actor(Person, models.Model):
 
     def __str__(self):
         return f'{self.first_name} {self.last_name}'
-
- # 0f096c78-72f3-415f-9417-e6b0c4b8c55f | Frank          | Darabont            |     | Not specified | frank-darabont
