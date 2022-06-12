@@ -20,8 +20,9 @@ urlpatterns = [
     path('api/', include('kinopoisk_app.urls.Actor')),
     path('api/', include('kinopoisk_app.urls.Director')),
     path('api/', include('kinopoisk_app.urls.Review')),
+    path('api/', include('kinopoisk_app.urls.Review')),
 
     # AUTH
-    path('api/auth/', include('rest_framework.urls'))
+    path('', include('accounts.urls')),
 
 ]
