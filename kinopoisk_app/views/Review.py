@@ -1,18 +1,18 @@
 from rest_framework.permissions import AllowAny, IsAuthenticated
 
 from kinopoisk_app.models import Review
-from kinopoisk_app.serializers.Review import ReviewSerializer
+from kinopoisk_app.serializers.Review import ReviewAddSerializer
 from rest_framework import viewsets
 
 
-class ReviewView(viewsets.ReadOnlyModelViewSet):
-    serializer_class = ReviewSerializer
+class ReviewView(viewsets.ModelViewSet):
+    queryset = Review.objects.all()
+    serializer_class = ReviewAddSerializer
     lookup_field = "id"
 
     def get_permissions(self):
-        if self.action == 'list':
-            permission_classes = [AllowAny]
-        else:
-            permission_classes = [IsAuthenticated]
+        permission_classes = [IsAuthenticated]
         return [permission() for permission in permission_classes]
 
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)

@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
-from kinopoisk_app.models import Actor, Cinema
+from kinopoisk_app.models import Actor
 from kinopoisk_app.models.common.BaseModel import BaseModel
 from django.urls import reverse
 from django.template.defaultfilters import slugify
@@ -12,7 +12,7 @@ class Movie(BaseModel):
 
     slug = models.SlugField(null=True, unique=True)
 
-    genre = models.ForeignKey('kinopoisk_app.Genre', on_delete=models.CASCADE, )
+    genre = models.ForeignKey('kinopoisk_app.Genre', on_delete=models.CASCADE, verbose_name="Жанр")
     description = models.TextField(_("Информация о фильме"), null=True, blank=True)
     user_rating = models.IntegerField(_("Рейтинг пользователя"), default=0)
     critique_rating = models.IntegerField(_("Рейтинг критика"), default=0)

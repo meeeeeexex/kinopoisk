@@ -1,7 +1,7 @@
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from kinopoisk_app.models import Movie
 from rest_framework import viewsets, serializers
-from kinopoisk_app.serializers.Movie import MovieSerializer, MovieRetrieveSerializer
+from kinopoisk_app.serializers.Movie import MovieSerializer, MovieRetrieveSerializer, MovieTOPSerializer
 from django_filters.rest_framework import DjangoFilterBackend
 from django_filters import rest_framework as filters
 
@@ -32,3 +32,8 @@ class MovieView(viewsets.ReadOnlyModelViewSet):
         else:
             permission_classes = [IsAuthenticated]
         return [permission() for permission in permission_classes]
+
+
+class MovieTOPView(viewsets.ModelViewSet):
+    queryset = Movie.objects.all().order_by('-critique_rating')[:100]
+    serializer_class = MovieTOPSerializer

@@ -35,3 +35,12 @@ class MovieRetrieveSerializer(serializers.ModelSerializer):
             'reviews',
             'cinemas',
         ]
+
+
+class MovieTOPSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Movie
+        fields = [
+            'name',
+        ]
