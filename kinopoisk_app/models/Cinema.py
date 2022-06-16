@@ -54,6 +54,11 @@ class Cinema(BaseModel):
                             )
     address = models.CharField(_("Адрес"), max_length=100)
 
+    movies = models.ForeignKey('kinopoisk_app.Movie',
+                               on_delete=models.CASCADE,
+                               related_name='in_cinema'
+                               )
+
     def __str__(self):
         return self.name + f"({self.address})"
 
