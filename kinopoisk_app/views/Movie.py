@@ -1,12 +1,10 @@
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from kinopoisk_app.models import Movie
 from rest_framework import viewsets
-from kinopoisk_app.serializers.Movie import MovieSerializer, MovieRetrieveSerializer
+from kinopoisk_app.serializers.Movie import MovieSerializer, MovieRetrieveSerializer, MovieTOPSerializer
 from django_filters.rest_framework import DjangoFilterBackend
 from django_filters import rest_framework as filters
 from random import choice
-from rest_framework import generics
-from django.utils.functional import cached_property
 
 
 class MovieFilter(filters.FilterSet):
@@ -37,12 +35,15 @@ class MovieView(viewsets.ReadOnlyModelViewSet):
 
 
 class RandomMovieRecommendations(viewsets.ReadOnlyModelViewSet):
-
     def get_queryset(self):
         # TODO: MINUS USER LIKED MOVIES
         random_movie = choice(Movie.objects.all().values())
         return Movie.objects.filter(id=random_movie['id'])
 
-    # serializer_class = MovieSerializer
     serializer_class = MovieRetrieveSerializer
     permission_classes = [AllowAny]
+
+
+class MovieTOPView(viewsets.ModelViewSet):
+    queryset = Movie.objects.all().order_by('-critique_rating')[:100]
+    serializer_class = MovieTOPSerializer

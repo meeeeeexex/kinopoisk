@@ -5,12 +5,6 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from kinopoisk_app.views import DirectorView
-from kinopoisk_app.views.Actor import ActorView
-from kinopoisk_app.views.Review import ReviewView
-from kinopoisk_app.views.Cinema import CinemaView
-from kinopoisk_app.views.Movie import MovieView
-from kinopoisk_app.views.User import UserView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
