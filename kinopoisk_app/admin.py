@@ -9,20 +9,25 @@ from kinopoisk_app.models.Genre import Genre
 from kinopoisk_app.models.User import CustomUser
 
 
+class MovieAdmin(admin.ModelAdmin):
+    list_display = ('id', 'name', 'genre', 'film_director',)
+    list_display_links = ('id',)
+    list_editable = ("genre",)
+    list_filter = ("genre", "film_director")
+
+
 class DirectorAdmin(admin.ModelAdmin):
     list_display = ('id', 'first_name', 'last_name', 'country',)
     list_display_links = ('id',)
-    search_fields = ('country',)
     list_editable = ("country",)
-    list_filter = ("country", "last_name")
+    list_filter = ("country",)
 
 
 class ActorAdmin(admin.ModelAdmin):
     list_display = ('id', 'first_name', 'last_name', 'country',)
     list_display_links = ('id',)
-    search_fields = ('country',)
     list_editable = ("country",)
-    list_filter = ("country", "last_name")
+    list_filter = ("country", )
 
 
 # class CustomUserAdmin(admin.ModelAdmin):
@@ -36,7 +41,7 @@ class ActorAdmin(admin.ModelAdmin):
 admin.site.register(Director, DirectorAdmin)
 admin.site.register(Actor, ActorAdmin)
 admin.site.register(Cinema)
-admin.site.register(Movie)
+admin.site.register(Movie, MovieAdmin)
 admin.site.register(Review)
 admin.site.register(Genre)
 admin.site.register(CustomUser)
