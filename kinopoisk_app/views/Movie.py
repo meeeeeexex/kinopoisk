@@ -1,6 +1,6 @@
+from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from kinopoisk_app.models import Movie
-from rest_framework import viewsets, serializers
 from kinopoisk_app.serializers.Movie import MovieSerializer, MovieRetrieveSerializer, MovieTOPSerializer
 from django_filters.rest_framework import DjangoFilterBackend
 from django_filters import rest_framework as filters
