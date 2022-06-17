@@ -1,4 +1,3 @@
-
 from kinopoisk_app.models.Actor import Actor
 from kinopoisk_app.serializers import ActorSerializer, ActorRetrieveSerializer
 from rest_framework.permissions import IsAuthenticated, AllowAny
