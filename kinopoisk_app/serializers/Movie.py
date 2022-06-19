@@ -9,6 +9,7 @@ class MovieSerializer(serializers.ModelSerializer):
     class Meta:
         model = Movie
         fields = [
+            'id',
             'name',
             'genre',
         ]
@@ -24,6 +25,7 @@ class MovieRetrieveSerializer(serializers.ModelSerializer):
     class Meta:
         model = Movie
         fields = [
+            'id',
             'name',
             'genre',
             'description',

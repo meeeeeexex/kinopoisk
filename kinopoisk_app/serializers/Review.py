@@ -1,7 +1,4 @@
 from rest_framework import serializers
-
-from accounts.serializers import UserSerializer
-from kinopoisk_app.models import CustomUser
 from kinopoisk_app.models.Review import Review
 
 
@@ -11,6 +8,7 @@ class ReviewAddSerializer(serializers.ModelSerializer):
 
         model = Review
         fields = [
+                  'id',
                   'movie',
                   'headline',
                   'review_text',
@@ -24,6 +22,7 @@ class ReviewSerializer(serializers.ModelSerializer):
 
         model = Review
         fields = [
+                  'id',
                   'user',
                   'headline',
                   'review_text',
