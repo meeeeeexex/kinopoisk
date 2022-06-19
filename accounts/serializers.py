@@ -90,3 +90,12 @@ class UserUpdateSerializer(serializers.ModelSerializer):
             'favorite_genres',
             'favorite_movies',
             )
+
+
+class ChangePasswordSerializer(serializers.Serializer):
+    model = CustomUser
+    """
+    Serializer for password change endpoint.
+    """
+    old_password = serializers.CharField(required=True)
+    new_password = serializers.CharField(required=True)
