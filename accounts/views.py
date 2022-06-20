@@ -10,7 +10,7 @@ from .serializers import RegisterSerializer, UserUpdateSerializer, UserSerialize
 
 class IsNotAuthenticated(BasePermission):
     """
-    Allows access only to not authenticated users.
+    Allows access only not to  authenticated users.
     """
 
     def has_permission(self, request, view):

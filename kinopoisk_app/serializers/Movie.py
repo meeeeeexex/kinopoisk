@@ -52,7 +52,7 @@ class MovieTOPSerializer(serializers.ModelSerializer):
 
 
 # Movie Create Serializer
-class MovieCreateSerializer(serializers.ModelSerializer):
+class MovieCreateUpdateSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Movie

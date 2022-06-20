@@ -4,9 +4,9 @@ from rest_framework.permissions import IsAuthenticated, AllowAny, IsAdminUser
 from rest_framework.response import Response
 
 from kinopoisk_app.models import Movie
-from rest_framework import viewsets, status
+from rest_framework import viewsets, status, generics
 from kinopoisk_app.serializers.Movie import MovieSerializer, MovieRetrieveSerializer, MovieTOPSerializer, \
-    MovieCreateSerializer
+    MovieCreateUpdateSerializer
 from django_filters.rest_framework import DjangoFilterBackend
 from django_filters import rest_framework as filters
 from random import choice
@@ -56,15 +56,32 @@ class MovieTOPView(viewsets.ModelViewSet):
 
 class MovieCreateView(viewsets.ModelViewSet):
     queryset = Movie.objects.all()
-    serializer_class = MovieCreateSerializer
+    serializer_class = MovieCreateUpdateSerializer
     permission_classes = (IsAdminUser,)
+    lookup_field = "slug"
 
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
         slug_for_url = request.data['slug']
-        headers = self.get_success_headers(serializer.data)
         return redirect(f'/api/movie/{slug_for_url}/')
 
 
+class MovieUpdateView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Movie.objects.all()
+    serializer_class = MovieCreateUpdateSerializer
+    lookup_field = 'slug'
+
+    def update(self, request, *args, **kwargs):
+        partial = kwargs.pop('partial', False)
+        instance = self.get_object()
+        serializer = self.get_serializer(instance, data=request.data, partial=partial)
+        serializer.is_valid(raise_exception=True)
+        self.perform_update(serializer)
+        slug_for_url = request.data['slug']
+
+        if getattr(instance, '_prefetched_objects_cache', None):
+            instance._prefetched_objects_cache = {}
+
+        return Response(status=status.HTTP_200_OK)
