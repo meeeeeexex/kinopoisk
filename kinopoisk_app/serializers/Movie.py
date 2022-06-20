@@ -3,6 +3,7 @@ from kinopoisk_app.models.Movie import Movie
 from kinopoisk_app.serializers import ReviewSerializer
 
 
+# Movie List Serializer
 class MovieSerializer(serializers.ModelSerializer):
     genre = serializers.StringRelatedField()
 
@@ -15,6 +16,7 @@ class MovieSerializer(serializers.ModelSerializer):
         ]
 
 
+# Movie Retrieve Serializer
 class MovieRetrieveSerializer(serializers.ModelSerializer):
     actor_squad = serializers.StringRelatedField(many=True)
     genre = serializers.StringRelatedField()
@@ -39,6 +41,7 @@ class MovieRetrieveSerializer(serializers.ModelSerializer):
         ]
 
 
+# Movie TOP100 Serializer
 class MovieTOPSerializer(serializers.ModelSerializer):
 
     class Meta:
@@ -46,3 +49,11 @@ class MovieTOPSerializer(serializers.ModelSerializer):
         fields = [
             'name',
         ]
+
+
+# Movie Create Serializer
+class MovieCreateSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Movie
+        fields = "__all__"

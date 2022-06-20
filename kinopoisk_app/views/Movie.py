@@ -1,7 +1,12 @@
-from rest_framework.permissions import IsAuthenticated, AllowAny
+from django.shortcuts import redirect
+from django.urls import reverse
+from rest_framework.permissions import IsAuthenticated, AllowAny, IsAdminUser
+from rest_framework.response import Response
+
 from kinopoisk_app.models import Movie
-from rest_framework import viewsets
-from kinopoisk_app.serializers.Movie import MovieSerializer, MovieRetrieveSerializer, MovieTOPSerializer
+from rest_framework import viewsets, status
+from kinopoisk_app.serializers.Movie import MovieSerializer, MovieRetrieveSerializer, MovieTOPSerializer, \
+    MovieCreateSerializer
 from django_filters.rest_framework import DjangoFilterBackend
 from django_filters import rest_framework as filters
 from random import choice
@@ -47,3 +52,19 @@ class RandomMovieRecommendations(viewsets.ReadOnlyModelViewSet):
 class MovieTOPView(viewsets.ModelViewSet):
     queryset = Movie.objects.all().order_by('-critique_rating')[:100]
     serializer_class = MovieTOPSerializer
+
+
+class MovieCreateView(viewsets.ModelViewSet):
+    queryset = Movie.objects.all()
+    serializer_class = MovieCreateSerializer
+    permission_classes = (IsAdminUser,)
+
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        slug_for_url = request.data['slug']
+        headers = self.get_success_headers(serializer.data)
+        return redirect(f'/api/movie/{slug_for_url}/')
+
+

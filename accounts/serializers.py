@@ -24,20 +24,6 @@ class UserSerializer(serializers.ModelSerializer):
                   'password')
 
 
-class UserSerializer2(serializers.ModelSerializer):
-    class Meta:
-        model = CustomUser
-        fields = ("id",
-                  'username',
-                  'first_name',
-                  'last_name',
-                  'email',
-                  'country',
-                  'favorite_genres',
-                  'favorite_movies',
-                  'password')
-
-
 # RegisterPage Serializer
 class RegisterSerializer(serializers.ModelSerializer):
     class Meta:
@@ -48,7 +34,6 @@ class RegisterSerializer(serializers.ModelSerializer):
                   'last_name',
                   'email',
                   'country',
-                  # 'favorite_genres',
                   'password',)
         extra_kwargs = {'password': {'write_only': True}}
 
@@ -59,7 +44,6 @@ class RegisterSerializer(serializers.ModelSerializer):
                                               first_name=validated_data['first_name'],
                                               last_name=validated_data['last_name'],
                                               country=validated_data['country'],
-                                              # favorite_genres=validated_data['favorite_genres'],
                                               )
 
         return user
