@@ -1,5 +1,4 @@
 from django.shortcuts import redirect
-from django.urls import reverse
 from rest_framework.permissions import IsAuthenticated, AllowAny, IsAdminUser
 from rest_framework.response import Response
 
@@ -20,7 +19,6 @@ class MovieFilter(filters.FilterSet):
 
 class MovieView(viewsets.ReadOnlyModelViewSet):
     queryset = Movie.objects.all()
-    serializer_class = MovieSerializer
     filter_backends = (DjangoFilterBackend,)
     filterset_class = MovieFilter
     lookup_field = "slug"

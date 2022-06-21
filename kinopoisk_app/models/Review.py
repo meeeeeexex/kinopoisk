@@ -6,7 +6,7 @@ from kinopoisk_app.models.common import BaseModel
 
 class Review(BaseModel):
     headline = models.CharField(max_length=100, verbose_name="Заголовок")
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, verbose_name="Пользователь")
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, verbose_name="Пользователь", related_name='reviews')
     movie = models.ForeignKey('kinopoisk_app.Movie', on_delete=models.CASCADE, verbose_name="Фильм", related_name='reviews')
     review_text = models.TextField(null=False, verbose_name="Отзыв")
 

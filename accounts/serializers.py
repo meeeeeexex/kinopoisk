@@ -1,15 +1,13 @@
 from rest_framework import serializers
-from rest_framework.serializers import raise_errors_on_nested_writes
-from rest_framework.utils import model_meta
-
 from kinopoisk_app.models import CustomUser
-from kinopoisk_app.serializers import MovieSerializer
+from kinopoisk_app.serializers import MovieSerializer, ReviewSerializerForProfilePage
 
 
 # UserPage Serializer
 class UserSerializer(serializers.ModelSerializer):
     favorite_genres = serializers.StringRelatedField(many=True)
     favorite_movies = MovieSerializer(many=True)
+    reviews = ReviewSerializerForProfilePage(many=True)
 
     class Meta:
         model = CustomUser
@@ -21,6 +19,7 @@ class UserSerializer(serializers.ModelSerializer):
                   'country',
                   'favorite_genres',
                   'favorite_movies',
+                  'reviews',
                   'password')
 
 
