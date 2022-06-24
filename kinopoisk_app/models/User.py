@@ -1,8 +1,10 @@
 from typing import List
-
 import pycountry
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.utils.translation import gettext_lazy as _
+
+from kinopoisk_app.models import BaseModel
 
 
 def get_all_countries() -> List[str]:
@@ -17,7 +19,9 @@ class Countries:
 
 
 class CustomUser(AbstractUser):
-    favorite_movies = models.ManyToManyField('kinopoisk_app.Movie', verbose_name='Избранные фильмы', blank=True)
+    username = models.CharField(verbose_name="Ник", max_length=150, unique=True, help_text=
+    _("Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.",))
+    favorite_movies = models.ManyToManyField('kinopoisk_app.Movie', verbose_name='Любимые фильмы', blank=True)
     favorite_genres = models.ManyToManyField('kinopoisk_app.Genre', verbose_name='Любимые жанры', blank=True)
     country = models.CharField('Страна',
                                max_length=100,

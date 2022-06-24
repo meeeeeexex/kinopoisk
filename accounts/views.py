@@ -1,22 +1,108 @@
-from rest_framework import generics, permissions
+from django.shortcuts import redirect
+from rest_framework import generics, viewsets, status, mixins
+from rest_framework.generics import GenericAPIView, UpdateAPIView
+from rest_framework.permissions import BasePermission, IsAuthenticated
 from rest_framework.response import Response
-from knox.models import AuthToken
-from .serializers import UserSerializer, RegisterSerializer
-from django.contrib.auth import login
-from rest_framework import permissions
-from rest_framework.authtoken.serializers import AuthTokenSerializer
-from knox.views import LoginView as KnoxLoginView
+
+from kinopoisk_app.models import CustomUser
+from .serializers import RegisterSerializer, UserUpdateSerializer, UserSerializer, ChangePasswordSerializer
+
+
+class IsNotAuthenticated(BasePermission):
+    """
+    Allows access only not to  authenticated users.
+    """
+
+    def has_permission(self, request, view):
+        return bool(not(request.user and request.user.is_authenticated))
 
 
 # Register API
-class RegisterAPI(generics.GenericAPIView):
+class RegisterAPI(viewsets.ModelViewSet):
     serializer_class = RegisterSerializer
+    permission_classes = (IsNotAuthenticated, )
 
-    def post(self, request, *args, **kwargs):
+    def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        user = serializer.save()
-        return Response({
-        "user": UserSerializer(user, context=self.get_serializer_context()).data,
-        "token": AuthToken.objects.create(user)[1]
-        })
+        self.perform_create(serializer)
+        self.get_success_headers(serializer.data)
+        return redirect("/api/login/")
+
+
+# Profile API
+class ProfileAPI(viewsets.ModelViewSet):
+    serializer_class = UserSerializer
+    permission_classes = (IsAuthenticated, )
+
+    def get_queryset(self):
+        return CustomUser.objects.filter(username=self.request.user)
+
+
+# ProfileUpdate API
+class ProfileUpdateAPI(generics.RetrieveUpdateDestroyAPIView):
+    queryset = CustomUser.objects.all()
+    serializer_class = UserUpdateSerializer
+
+    def update(self, request, *args, **kwargs):
+        partial = kwargs.pop('partial', False)
+        instance = self.get_object()
+        serializer = self.get_serializer(instance, data=request.data, partial=partial)
+        serializer.is_valid(raise_exception=True)
+        self.perform_update(serializer)
+
+        if getattr(instance, '_prefetched_objects_cache', None):
+            instance._prefetched_objects_cache = {}
+
+        return Response(status=status.HTTP_200_OK)
+
+    def get_object(self):
+        return self.request.user
+
+# class ProfileUpdateAPI(viewsets.ModelViewSet):
+#     serializer_class = UserUpdateSerializer
+#     permission_classes = (IsAuthenticated, )
+#     queryset = CustomUser.objects.all()
+#
+#     def retrieve(self, request, *args, **kwargs):
+#         instance = self.get_object()
+#         serializer = self.get_serializer(instance)
+#         return Response(serializer.data)
+#
+#     def update(self, request, *args, **kwargs):
+#         partial = kwargs.pop('partial', False)
+#         instance = self.get_object()
+#         serializer = self.get_serializer(instance, data=request.data, partial=partial)
+#         serializer.is_valid(raise_exception=True)
+#         self.perform_update(serializer)
+#
+#         if getattr(instance, '_prefetched_objects_cache', None):
+#             instance._prefetched_objects_cache = {}
+#
+#         return Response(status=status.HTTP_200_OK)
+#
+#     def get_object(self):
+#         return self.request.user
+
+
+class ChangePasswordView(UpdateAPIView):
+    serializer_class = ChangePasswordSerializer
+    model = CustomUser
+    permission_classes = (IsAuthenticated,)
+
+    def get_object(self, queryset=None):
+        obj = self.request.user
+        return obj
+
+    def update(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        serializer = self.get_serializer(data=request.data)
+
+        if serializer.is_valid():
+            if not self.object.check_password(serializer.data.get("old_password")):
+                return Response({"old_password": ["Wrong password."]}, status=status.HTTP_400_BAD_REQUEST)
+            self.object.set_password(serializer.data.get("new_password"))
+            self.object.save()
+            return redirect("/api/login/")
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
