@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from kinopoisk_app.models.Movie import Movie
-from kinopoisk_app.serializers import ReviewSerializer
+from kinopoisk_app.serializers import ReviewSerializer, ActorSerializer, DirectorSerializer
+from kinopoisk_app.serializers.Cinema import CinemaSerializer
 
 
 # Movie List Serializer
@@ -18,11 +19,11 @@ class MovieSerializer(serializers.ModelSerializer):
 
 # Movie Retrieve Serializer
 class MovieRetrieveSerializer(serializers.ModelSerializer):
-    actor_squad = serializers.StringRelatedField(many=True)
+    actor_squad = ActorSerializer(many=True)
     genre = serializers.StringRelatedField()
-    film_director = serializers.StringRelatedField()
+    film_director = DirectorSerializer()
     reviews = ReviewSerializer(many=True)
-    cinemas = serializers.StringRelatedField(many=True)
+    cinemas = CinemaSerializer(many=True)
 
     class Meta:
         model = Movie

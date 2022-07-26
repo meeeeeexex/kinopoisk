@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'django_filters',
     'knox',
     'accounts',
+    'drf_yasg',
 ]
 
 
@@ -163,3 +164,7 @@ REST_FRAMEWORK = {
 }
 
 LOGIN_REDIRECT_URL = "/api/profile/"
+
+SWAGGER_SETTINGS = {
+    'VALIDATOR_URL': 'http://localhost:8000',
+}

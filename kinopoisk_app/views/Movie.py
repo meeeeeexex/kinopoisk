@@ -21,7 +21,7 @@ class MovieView(viewsets.ReadOnlyModelViewSet):
     queryset = Movie.objects.all()
     filter_backends = (DjangoFilterBackend,)
     filterset_class = MovieFilter
-    lookup_field = "slug"
+    lookup_field = "id"
 
     def get_serializer_class(self):
         if self.action == 'list':
@@ -70,6 +70,7 @@ class MovieUpdateView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Movie.objects.all()
     serializer_class = MovieCreateUpdateSerializer
     lookup_field = 'slug'
+    permission_classes = (IsAdminUser,)
 
     def update(self, request, *args, **kwargs):
         partial = kwargs.pop('partial', False)

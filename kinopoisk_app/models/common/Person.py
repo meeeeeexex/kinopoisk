@@ -1,11 +1,10 @@
-from typing import List
 import pycountry
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from kinopoisk_app.models.common.BaseModel import BaseModel
 
 
-def get_all_countries() -> List[str]:
+def get_all_countries():
     available_countries = [country_item.name for country_item in pycountry.countries]
     available_countries.remove('Russian Federation')
     return available_countries
