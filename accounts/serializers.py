@@ -20,7 +20,7 @@ class UserSerializer(serializers.ModelSerializer):
                   'favorite_genres',
                   'favorite_movies',
                   'reviews',
-                  'password')
+                  )
 
 
 # RegisterPage Serializer

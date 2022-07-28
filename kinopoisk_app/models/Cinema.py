@@ -54,10 +54,10 @@ class Cinema(BaseModel):
                             )
     address = models.CharField(_("Адрес"), max_length=100)
 
-    movies = models.ManyToManyField('kinopoisk_app.Movie', related_name='cinemas')
+    movies = models.ManyToManyField('kinopoisk_app.Movie', related_name='cinemas', verbose_name="Доступные фильмы")
 
     def __str__(self):
-        return self.name + f"({self.city},{self.address})"
+        return f"{self.name}( city: {self.city}, address: {self.address})"
 
     class Meta:
         verbose_name = "Кинотеатр"

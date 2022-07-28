@@ -1,5 +1,4 @@
 from rest_framework import serializers
-from rest_framework.serializers import Serializer
 
 from kinopoisk_app.models import Movie, CustomUser
 from kinopoisk_app.models.Review import Review
@@ -20,7 +19,7 @@ class ReviewAddSerializer(serializers.ModelSerializer):
 
 
 # Movie Serializer to avoid circular import
-class MovieSerializer(serializers.ModelSerializer):
+class MovieSerializerForReview(serializers.ModelSerializer):
     genre = serializers.StringRelatedField()
 
     class Meta:
@@ -34,11 +33,11 @@ class MovieSerializer(serializers.ModelSerializer):
 
 # Review serializer on profile page
 class ReviewSerializerForProfilePage(ReviewAddSerializer):
-    movie = MovieSerializer()
+    movie = MovieSerializerForReview()
 
 
 # User Serializer for movie page (to avoid circular import)
-class UserSerializer(serializers.ModelSerializer):
+class UserSerializerForMoviePage(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
         fields = ("id",
@@ -52,7 +51,7 @@ class UserSerializer(serializers.ModelSerializer):
 
 # Review serializer on a film page
 class ReviewSerializer(serializers.ModelSerializer):
-    user = UserSerializer()
+    user = UserSerializerForMoviePage()
 
     class Meta:
 

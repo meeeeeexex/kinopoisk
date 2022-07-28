@@ -1,7 +1,6 @@
 from django.shortcuts import redirect
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
-
 from kinopoisk_app.models import Review
 from kinopoisk_app.serializers.Review import ReviewAddSerializer, ReviewSerializerForProfilePage, ReviewSerializer
 from rest_framework import viewsets, generics, status
@@ -17,8 +16,8 @@ class AddReviewAPI(viewsets.ModelViewSet):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
-        headers = self.get_success_headers(serializer.data)
-        return redirect(f'/api/profile/')
+        movie_id = request.data['movie']
+        return redirect(f'/api/movie/{movie_id}')
 
     def get_permissions(self):
         permission_classes = [IsAuthenticated]
